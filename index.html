@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成都理工大学工程技术学院 - 官方网站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+        }
+
+        :root {
+            --primary-color: #1a4b8c;
+            --secondary-color: #e63946;
+            --accent-color: #2a9d8f;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* 导航栏 */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* 轮播图 */
+        .slider {
+            margin-top: 80px;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+            max-width: 600px;
+        }
+
+        .slide-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .slide-content p {
+            font-size: 1.2rem;
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .slider-dots {
+            display: inline-block;
+            background: rgba(255,255,255,0.5);
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: white;
+        }
+
+        /* 关于学校 */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 学院介绍 */
+        .departments {
+            background-color: var(--light-color);
+        }
+
+        .department-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .department-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .department-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .department-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .department-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .department-card:hover .department-img img {
+            transform: scale(1.1);
+        }
+
+        .department-info {
+            padding: 25px;
+        }
+
+        .department-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .department-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .department-majors {
+            margin-top: 15px;
+        }
+
+        .department-majors h4 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .majors-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .major-tag {
+            background: #f0f4f8;
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* 专业设置 */
+        .majors-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .majors-table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .majors-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .majors-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .majors-table tr:hover {
+            background: #f0f4f8;
+        }
+
+        /* 校园风光 */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--accent-color);
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #444;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .slide-content h2 {
+                font-size: 2rem;
+            }
+            
+            .slide-content {
+                left: 30px;
+                bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: var(--shadow);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: all 0.5s ease;
+            }
+            
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .slider {
+                height: 400px;
+                margin-top: 70px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .department-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .slide-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .slide-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .majors-table {
+                font-size: 0.9rem;
+            }
+            
+            .majors-table th, 
+            .majors-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <!-- 这里可以使用学校logo图片 -->
+                    <div class="logo-text">成都理工大学工程技术学院</div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">学校概况</a></li>
+                    <li><a href="#departments">学院设置</a></li>
+                    <li><a href="#majors">专业介绍</a></li>
+                    <li><a href="#campus">校园风光</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 轮播图 -->
+    <section class="slider" id="home">
+        <div class="slides">
+            <div class="slide">
+                <img src="https://img95.699pic.com/photo/50046/9582.jpg_wh300.jpg" alt="校园全景">
+                <div class="slide-content">
+                    <h2>成都理工大学工程技术学院</h2>
+                    <p>中国核工业西南物理研究院与成都理工大学合作创办</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://img95.699pic.com/photo/50170/2134.jpg_wh300.jpg" alt="教学楼">
+                <div class="slide-content">
+                    <h2>现代化教学设施</h2>
+                    <p>先进的教学设备，优美的学习环境</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://img95.699pic.com/photo/50139/5287.jpg_wh300.jpg" alt="图书馆">
+                <div class="slide-content">
+                    <h2>丰富的图书资源</h2>
+                    <p>藏书丰富的图书馆，助力学子成长</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://img95.699pic.com/photo/50044/6781.jpg_wh300.jpg" alt="校园风景">
+                <div class="slide-content">
+                    <h2>美丽校园环境</h2>
+                    <p>绿化覆盖率达70%的园林式校园</p>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <div class="slider-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+                <span class="dot" data-slide="3"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学校概况 -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>学校概况</h2>
+                <p>了解成都理工大学工程技术学院的办学特色和校园环境</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>学院位于世界著名旅游胜地——四川省乐山市主城区，面朝三江、背依峨眉。乐山交通发达、出行便利，纵贯西南的高速铁路、高速公路交汇于此，距离成都双流国际机场、天府国际机场1小时路程，是西部综合交通次枢纽。</p>
+                    <p>学院占地面积1151余亩，规划面积2000余亩，绿化覆盖率达70%。校园景色宜人，处处彰显环境育人的特色。校区地势丘峦起伏，建筑布局随湾依山，占地300余亩的沫若湖碧波荡漾，环湖公园、万景花园鸟语花香，银杏大道、香樟大道风景如画，桂花林、桃花林相映成趣，与峨眉山—乐山大佛世界自然与文化双遗产景区融为一体。</p>
+                    <p>学院是四川省唯一同时拥有全国绿化模范单位、省级绿化模范先进学校、省级园林式单位等荣誉的大学。</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://img95.699pic.com/photo/50036/1355.jpg_wh300.jpg" alt="校园环境">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学院设置 -->
+    <section class="section departments" id="departments">
+        <div class="container">
+            <div class="section-title">
+                <h2>学院设置</h2>
+                <p>探索我们多样化的学院和专业设置</p>
+            </div>
+            <div class="department-cards">
+                <div class="department-card">
+                    <div class="department-img">
+                        <img src="https://img95.699pic.com/photo/50046/9582.jpg_wh300.jpg" alt="核工程与新能源技术系">
+                    </div>
+                    <div class="department-info">
+                        <h3>核工程与新能源技术系</h3>
+                        <p>培养核工程与新能源领域的高级专门人才，拥有先进的实验设备和优秀的师资队伍。</p>
+                        <div class="department-majors">
+                            <h4>主要专业：</h4>
+                            <div class="majors-list">
+                                <span class="major-tag">核工程与核技术</span>
+                                <span class="major-tag">新能源科学与工程</span>
+                                <span class="major-tag">辐射防护与核安全</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="department-card">
+                    <div class="department-img">
+                        <img src="https://img95.699pic.com/photo/50170/2134.jpg_wh300.jpg" alt="资源勘查与土木工程系">
+                    </div>
+                    <div class="department-info">
+                        <h3>资源勘查与土木工程系</h3>
+                        <p>培养资源勘查、土木工程等领域的高级工程技术人才，注重实践能力培养。</p>
+                        <div class="department-majors">
+                            <h4>主要专业：</h4>
+                            <div class="majors-list">
+                                <span class="major-tag">资源勘查工程</span>
+                                <span class="major-tag">土木工程</span>
+                                <span class="major-tag">地质工程</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="department-card">
+                    <div class="department-img">
+                        <img src="https://img95.699pic.com/photo/50139/5287.jpg_wh300.jpg" alt="自动化工程系">
+                    </div>
+                    <div class="department-info">
+                        <h3>自动化工程系</h3>
+                        <p>培养自动化、电气工程等领域的高级工程技术人才，拥有现代化的实验中心。</p>
+                        <div class="department-majors">
+                            <h4>主要专业：</h4>
+                            <div class="majors-list">
+                                <span class="major-tag">自动化</span>
+                                <span class="major-tag">电气工程及其自动化</span>
+                                <span class="major-tag">测控技术与仪器</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="department-card">
+                    <div class="department-img">
+                        <img src="https://img95.699pic.com/photo/50044/6781.jpg_wh300.jpg" alt="管理与传媒系">
+                    </div>
+                    <div class="department-info">
+                        <h3>管理与传媒系</h3>
+                        <p>培养管理、传媒等领域的高级专门人才，注重理论与实践相结合。</p>
+                        <div class="department-majors">
+                            <h4>主要专业：</h4>
+                            <div class="majors-list">
+                                <span class="major-tag">工商管理</span>
+                                <span class="major-tag">市场营销</span>
+                                <span class="major-tag">广播电视学</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="department-card">
+                    <div class="department-img">
+                        <img src="https://img95.699pic.com/photo/50036/1355.jpg_wh300.jpg" alt="经济系">
+                    </div>
+                    <div class="department-info">
+                        <h3>经济系</h3>
+                        <p>培养经济、金融等领域的高级专门人才，拥有丰富的实践教学资源。</p>
+                        <div class="department-majors">
+                            <h4>主要专业：</h4>
+                            <div class="majors-list">
+                                <span class="major-tag">经济学</span>
+                                <span class="major-tag">金融工程</span>
+                                <span class="major-tag">国际经济与贸易</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 专业介绍 -->
+    <section class="section" id="majors">
+        <div class="container">
+            <div class="section-title">
+                <h2>专业介绍</h2>
+                <p>详细了解各学院的专业设置和培养方向</p>
+            </div>
+            <table class="majors-table">
+                <thead>
+                    <tr>
+                        <th>学院</th>
+                        <th>专业名称</th>
+                        <th>学制</th>
+                        <th>授予学位</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>核工程与新能源技术系</td>
+                        <td>核工程与核技术</td>
+                        <td>4年</td>
+                        <td>工学学士</td>
+                    </tr>
+                    <tr>
+                        <td>核工程与新能源技术系</td>
+                        <td>新能源科学与工程</td>
+                        <td>4年</td>
+                        <td>工学学士</td>
+                    </tr>
+                    <tr>
+                        <td>资源勘查与土木工程系</td>
+                        <td>资源勘查工程</td>
+                        <td>4年</td>
+                        <td>工学学士</td>
+                    </tr>
+                    <tr>
+                        <td>资源勘查与土木工程系</td>
+                        <td>土木工程</td>
+                        <td>4年</td>
+                        <td>工学学士</td>
+                    </tr>
+                    <tr>
+                        <td>自动化工程系</td>
+                        <td>自动化</td>
+                        <td>4年</td>
+                        <td>工学学士</td>
+                    </tr>
+                    <tr>
+                        <td>自动化工程系</td>
+                        <td>电气工程及其自动化</td>
+                        <td>4年</td>
+                        <td>工学学士</td>
+                    </tr>
+                    <tr>
+                        <td>管理与传媒系</td>
+                        <td>工商管理</td>
+                        <td>4年</td>
+                        <td>管理学学士</td>
+                    </tr>
+                    <tr>
+                        <td>管理与传媒系</td>
+                        <td>市场营销</td>
+                        <td>4年</td>
+                        <td>管理学学士</td>
+                    </tr>
+                    <tr>
+                        <td>经济系</td>
+                        <td>经济学</td>
+                        <td>4年</td>
+                        <td>经济学学士</td>
+                    </tr>
+                    <tr>
+                        <td>经济系</td>
+                        <td>金融工程</td>
+                        <td>4年</td>
+                        <td>经济学学士</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 校园风光 -->
+    <section class="section" id="campus">
+        <div class="container">
+            <div class="section-title">
+                <h2>校园风光</h2>
+                <p>欣赏美丽的校园环境，感受浓厚的学术氛围</p>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://img95.699pic.com/photo/50046/9582.jpg_wh300.jpg" alt="校园全景">
+                    <div class="gallery-overlay">
+                        <h3>校园全景</h3>
+                        <p>美丽的沫若湖畔</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://img95.699pic.com/photo/50170/2134.jpg_wh300.jpg" alt="教学楼">
+                    <div class="gallery-overlay">
+                        <h3>现代化教学楼</h3>
+                        <p>先进的教学设施</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://img95.699pic.com/photo/50139/5287.jpg_wh300.jpg" alt="图书馆">
+                    <div class="gallery-overlay">
+                        <h3>图书馆</h3>
+                        <p>丰富的图书资源</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://img95.699pic.com/photo/50044/6781.jpg_wh300.jpg" alt="实验楼">
+                    <div class="gallery-overlay">
+                        <h3>实验中心</h3>
+                        <p>先进的实验设备</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://img95.699pic.com/photo/50036/1355.jpg_wh300.jpg" alt="体育场">
+                    <div class="gallery-overlay">
+                        <h3>体育场</h3>
+                        <p>完善的体育设施</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://img95.699pic.com/photo/50046/9582.jpg_wh300.jpg" alt="学生活动">
+                    <div class="gallery-overlay">
+                        <h3>学生活动中心</h3>
+                        <p>丰富的校园生活</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>成都理工大学工程技术学院</h3>
+                    <p>中国核工业西南物理研究院与成都理工大学合作创办的全日制普通高等学校，致力于培养高素质应用型人才。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">学校概况</a></li>
+                        <li><a href="#departments">学院设置</a></li>
+                        <li><a href="#majors">专业介绍</a></li>
+                        <li><a href="#campus">校园风光</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系信息</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>四川省乐山市市中区肖坝路222号</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>0833-7820666</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>zhaosheng@cdutetc.cn</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-globe"></i>
+                            <span>www.cdutetc.cn</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 成都理工大学工程技术学院 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // 轮播图功能
+        let currentSlide = 0;
+        const slides = document.querySelector('.slides');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        // 自动轮播
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // 更新指示点
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // 点击指示点切换
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                updateSlider();
+                resetAutoSlide();
+            });
+        });
+
+        // 自动轮播间隔
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        function resetAutoSlide() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 移动端关闭菜单
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // 页面加载后显示第一张幻灯片
+        window.addEventListener('load', () => {
+            updateSlider();
+        });
+    </script>
+</body>
+</html>
